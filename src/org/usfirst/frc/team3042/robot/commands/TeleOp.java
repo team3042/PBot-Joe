@@ -7,21 +7,22 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CameraServo_TestZero extends Command {
+public class TeleOp extends Command {
 
-    public CameraServo_TestZero() {
+    public TeleOp() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    		requires(Robot.cameraServo);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    		Robot.cameraServo.testZero();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	double leftPow = Robot.oi.getLStick();
+    	double rightPow = Robot.oi.getRStick();
+    	Robot.drivetrain.setMotors(leftPow, rightPow);
     }
 
     // Make this return true when this Command no longer needs to run execute()

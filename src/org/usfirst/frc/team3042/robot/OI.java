@@ -1,11 +1,5 @@
 package org.usfirst.frc.team3042.robot;
 
-import org.usfirst.frc.team3042.robot.commands.CameraServo_SetRotation;
-import org.usfirst.frc.team3042.robot.commands.CameraServo_SetTilt;
-import org.usfirst.frc.team3042.robot.commands.CameraServo_TestOne;
-import org.usfirst.frc.team3042.robot.commands.CameraServo_TestZero;
-import org.usfirst.frc.team3042.robot.commands.RotationDevice_SetRPM;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -43,25 +37,17 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
-	public Joystick joystickLeft = new Joystick(0);
-	public Joystick joystickRight = new Joystick(1); 
 	
-	Button testButton = new JoystickButton(joystickLeft, 1);
-	Button testThing = new JoystickButton(joystickLeft, 2);
-	
-	Button RightTrigger = new JoystickButton(joystickRight, 1);
-	Button RightButton7 = new JoystickButton(joystickRight, 7);
-	Button RightButton8 = new JoystickButton(joystickRight, 8);
+	Joystick gpadSticks = new Joystick(0);
 	
 	public OI() {
-		testButton.whenPressed(new CameraServo_TestZero());
-		testThing.whenPressed(new CameraServo_TestOne());
 		
-		RightTrigger.whileHeld(new RotationDevice_SetRPM(314));
-		
-		RightButton7.whenPressed(new CameraServo_SetRotation(90));
-		RightButton8.whenPressed(new CameraServo_SetTilt(90));
-		
+	}
+	public double getLStick() {
+		return - gpadSticks.getRawAxis(1);
+	}
+	public double getRStick() {
+		return - gpadSticks.getRawAxis(5);
 	}
 	
 }
